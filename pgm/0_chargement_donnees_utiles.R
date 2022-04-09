@@ -15,14 +15,14 @@ file.remove("donnees/Filosofi2017_carreaux_200m_shp.7z")
 ##############################################################
 # Chargement des contours des bureaux de vote (open data TM) #
 ##############################################################
-lien_bureaux <- "https://data.toulouse-metropole.fr/explore/dataset/elec-2021-decoupage-bdv/download/?format=shp&timezone=Europe/Berlin&lang=fr"
-download.file(url=lien_bureaux,destfile = "donnees/elec-2021-decoupage-bdv.zip")
-unzip(zipfile = "donnees/elec-2021-decoupage-bdv.zip",
+lien_bureaux <- "https://data.toulouse-metropole.fr/explore/dataset/elections-2017-decoupage-des-bureaux-de-vote/download/?format=shp&timezone=Europe/Berlin&lang=fr"
+download.file(url=lien_bureaux,destfile = "donnees/elections-2017-decoupage-bureaux-de-vote.zip")
+unzip(zipfile = "donnees/elections-2017-decoupage-des-bureaux-de-vote.zip",
       exdir = "donnees")
-file.remove("donnees/elec-2021-decoupage-bdv.zip")
+file.remove("donnees/elections-2017-decoupage-des-bureaux-de-vote.zip")
 
 ###############################################
 # Chargement des résultats par bureau de vote #
 ###############################################
-lien_resultats <- "https://data.toulouse-metropole.fr/explore/dataset/rg-2021-2t-vt-resultats/download/?format=csv&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B"
-download.file(url=lien_resultats,destfile = "donnees/rg-2021-2t-vt-resultats.csv")
+lien_resultats <- "https://data.toulouse-metropole.fr/explore/dataset/election-presidentielle-2017-1er-tour-resultats-ville-de-toulouse/download/?format=csv&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B"
+download.file(url=lien_resultats,destfile = "donnees/presid_2017_T1.csv")

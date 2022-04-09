@@ -116,7 +116,7 @@ calculAgregatsZones <- function(cheminFichierContoursSHP,
 }
 
 
-filosofi_par_bdv <- calculAgregatsZones(cheminFichierContoursSHP="donnees/elec-2021-decoupage-bdv.shp", 
+filosofi_par_bdv17 <- calculAgregatsZones(cheminFichierContoursSHP="donnees/elections-2017-decoupage-des-bureaux-de-vote.shp", 
                                  cheminFichierCSV="donnees/Filosofi2017_carreaux_200m_met.csv", 
                                  listeCodesCommune=c("31555"),
                                  listeIndic=listeIndicDef)
