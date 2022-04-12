@@ -30,7 +30,9 @@ bv22_infosRP <- intersection_bv_iris %>%
          OUV = C18_ACTOCC1564_CS6*part_iris,
          RETR = P18_RETR1564*part_iris,
          ETUD = P18_ETUD1564 *part_iris,
-         POP=P18_POP1564*part_iris) %>% 
+         POP=P18_POP1564*part_iris,
+         VELO=C18_ACTOCC15P_VELO*part_iris,
+         ACTOPP=C18_ACTOCC15P*part_iris) %>% 
   group_by(uniq_bdv) %>% 
   summarise(tx_chom=sum(CHOM)/sum(POP)*100,
             tx_nsal=sum(NSAL)/sum(POP)*100,
@@ -41,6 +43,6 @@ bv22_infosRP <- intersection_bv_iris %>%
             tx_emp=sum(EMP)/sum(POP)*100,
             tx_etud = sum(ETUD)/sum(POP)*100,
             tx_retr = sum(RETR)/sum(POP)*100,
-            tx_ouv=sum(OUV)/sum(POP)*100) %>% 
+            tx_ouv=sum(OUV)/sum(POP)*100,
+            tx_velo=sum(VELO)/sum(ACTOPP)*100) %>% 
   ungroup()
-

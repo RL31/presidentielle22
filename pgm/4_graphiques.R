@@ -69,7 +69,9 @@ graphiques_catsoc <- function(CAND="Macron",VAR="Nombre.de.voix.du.candidat.2",C
     left_join(donnees22 %>% st_drop_geometry() %>% as.data.frame(),by="uniq_bdv") %>% 
     left_join(filosofi_par_bdv22,by="uniq_bdv") %>% 
     mutate(ndv=Ind_snv/Ind/1000) %>% 
-    pivot_longer(cols=c("tx_chom","tx_agri","tx_artcom","tx_cad","tx_pint","tx_emp","tx_ouv","tx_nsal","tx_retr","tx_etud","ndv"),
+    pivot_longer(cols=c("tx_chom","tx_artcom","tx_cad","tx_pint",
+                        "tx_emp","tx_ouv","tx_nsal","tx_retr",
+                        "ndv"),
                  names_to="indicateur",
                  values_to="taux") %>% 
     ggplot(aes(x = taux,
@@ -80,9 +82,9 @@ graphiques_catsoc <- function(CAND="Macron",VAR="Nombre.de.voix.du.candidat.2",C
          y=paste0("Vote ",CAND,"\n(% d'inscrits)"),
          title=paste0("Le vote ",CAND," selon les caractéristiques socio-économiques de la population"),
          subtitle="à Toulouse, par bureau de vote",
-         caption="Source : Mairie de Toulouse, Découpage des bureaux de vote\n et résultats du 1er tour de l'élection présidentielle 2017\nInsee, Recensement de la population 2018\net Filosofi 2017\nTraitements et erreurs : @Re_Mi_La")+
+         caption="Source : Mairie de Toulouse, Découpage des bureaux de vote\n et résultats du 1er tour de l'élection présidentielle 2022\nInsee, Recensement de la population 2018\net Filosofi 2017\nTraitements et erreurs : @Re_Mi_La")+
     facet_wrap(~indicateur,scales = "free",
-               labeller = as_labeller(c("tx_agri"="Agriculteurs (%)",
+               labeller = as_labeller(c(#"tx_agri"="Agriculteurs (%)",
                                         "tx_artcom"="Artisans, commerçants,\nchefs d'entreprise (%)",
                                         "tx_cad"="Cadres (%)",
                                         "tx_chom"="Chômeurs (%)",
@@ -91,8 +93,10 @@ graphiques_catsoc <- function(CAND="Macron",VAR="Nombre.de.voix.du.candidat.2",C
                                         "tx_ouv"="Ouvriers (%)",
                                         "tx_retr"="Retraités (%)",
                                         "tx_pint"="Professions intermédiaires (%)",
-                                        "tx_etud"="Etudiants (%)",
-                                        "ndv"="Niveau de vie (milliers d'€)")))+
+                                        #"tx_etud"="Etudiants (%)",
+                                        "ndv"="Niveau de vie (milliers d'€)"#,
+                                        #"tx_velo"="Usage D-T du vélo (%)"
+                                        )))+
     theme_minimal()+
     theme(     plot.caption = element_text(size=8),
                plot.background = element_rect(fill="white",color="white"))
@@ -101,7 +105,6 @@ graphiques_catsoc <- function(CAND="Macron",VAR="Nombre.de.voix.du.candidat.2",C
 }
 
 
-# graphiques_catsoc(CAND="Macron",VAR="Nombre.de.voix.du.candidat.2",COUL="darkorchid4")
 graphiques_catsoc(CAND="Macron",VAR="macron",COUL="darkorchid4")
 graphiques_catsoc(CAND="abst",VAR="Nombre.d.abstentions",COUL="black")
 graphiques_catsoc(CAND="Jadot",VAR="jadot",COUL="chartreuse4")
@@ -112,3 +115,34 @@ graphiques_catsoc(CAND="Roussel",VAR="roussel",COUL="red3")
 graphiques_catsoc(CAND="Lassalle",VAR="lassalle",COUL="cadetblue")
 graphiques_catsoc(CAND="Pécresse",VAR="pecresse",COUL="blue")
 graphiques_catsoc(CAND="Zemmour",VAR="zemmour",COUL="brown")
+
+
+bv22_infosRP %>% 
+  mutate(Numéro.du.bureau=str_pad(uniq_bdv,4,"left","0") ) %>% 
+  left_join(donnees22 %>% st_drop_geometry() %>% as.data.frame(),by="uniq_bdv") %>% 
+  left_join(filosofi_par_bdv22,by="uniq_bdv") %>% 
+  mutate(ndv=Ind_snv/Ind/1000) %>% 
+  pivot_longer(cols=c("tx_velo"),
+               names_to="indicateur",
+               values_to="taux") %>% 
+  pivot_longer(cols=c("melenchon","roussel","jadot","hidalgo","macron","lepen"),names_to="candidat",values_to="nb_voix") %>% 
+  
+  ggplot(aes(x = taux,
+             y = nb_voix/Nombre.d.inscrits*100))+
+  geom_point(color="chartreuse4")+
+  geom_smooth(color="chartreuse4",fill="chartreuse4")+
+  labs(x="",
+       y=paste0("Vote en % d'inscrits"),
+       title="Voter avec ses pieds, version vélotaf",
+       subtitle="à Toulouse, par bureau de vote",
+       caption="Source : Mairie de Toulouse, Découpage des bureaux de vote\n et résultats du 1er tour de l'élection présidentielle 2022\nInsee, Recensement de la population 2018 à l'Iris équiréparti dans les bureaux de vote\nTraitements et erreurs : @Re_Mi_La")+
+  facet_wrap(~candidat,scales = "free",
+             labeller = as_labeller(c("melenchon"="Mélenchon",
+                                      "roussel"="Roussel",
+                                      "jadot"="Jadot",
+                                      "hidalgo"="Hidalgo",
+                                      "macron"="Macron",
+                                      "lepen"="Le pen")))+
+  theme_minimal()+
+  theme(     plot.caption = element_text(size=8),
+             plot.background = element_rect(fill="white",color="white"))
