@@ -16,7 +16,7 @@ Les bureaux de vote qui donnent ses meilleurs résultats à Mélenchon sont les 
 
 Mais le candidat obtient aussi de bons scores dans les bureaux de classes moyennes. Il récolte 30 % des voix des inscrit-e-s parmi les bureaux dont le niveau de vie moyen est de 20 000 à 25 000 euros.
 
-## L'abstention en baisse là où Mélenchon gagne des voix
+### L'abstention en baisse là où Mélenchon gagne des voix
 
 La progression de Mélenchon réside en partie dans sa réussite à mobiliser l'électorat des quartiers populaires. A Toulouse, entre 2017 et 2022, le taux d'abstention diminue de 3 points (de 26 % à 23 %). Cette légère hausse de la participation n'est pas homogène sur le territoire : elle se fait notamment dans les quartiers de la politique de la ville (Mirail, Empalot, Izard), mais aussi dans le centre ville.
 
@@ -24,13 +24,14 @@ La progression de Mélenchon réside en partie dans sa réussite à mobiliser l'
 
 ![image](https://user-images.githubusercontent.com/30465109/163058856-e26aaeee-3b72-4693-89b4-8a7ed20c397a.png)
 
-#### Jadot nouvel Hamon ?
+### Jadot-Hamon les deux faces d'un même échec?
 
-### A droite et à l'extrême droite, l'éclatement de l'électorat traditionnel
+### Macron et Zemmour fissurent l'électorat traditionnel de droite 
 
-##### Macron siphonne Pécresse
-##### Zemmour racle les miettes
-##### Le Pen reste stable
+### Macron, un succès en demi-teinte ? 
 
+### L'effondrement des Républicains profite à l'extrême droite 
+
+### Aucun progrès chez Le Pen 
 
 réf à méthodo Cartelec
