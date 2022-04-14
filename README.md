@@ -20,9 +20,9 @@ Au soir du 10 avril 2022, Mélenchon sort en tête de 163 bureaux de vote toulou
 
 Ce sont les bureaux qui comptent le plus d'ouvriers et de chômeurs qui donnent à Mélenchon ses meilleurs résultats : parfois jusqu'à plus de 40 % des inscrit-e-s, par exemple à X et Y. Le constat est valable également au regard du niveau de vie : Mélenchon est à 50 % (des inscrit-e-s) dans les bureaux où le niveau de vie moyen est inférieur à 15 000 euros par an. Inversement, il réalise ses plus mauvais scores (entre 10 % et 20 %) là où les cadres représentent plus de 30 % des travailleurs et où le niveau de vie annuel moyen est supérieur à 30 000 euros.
 
-![image](https://user-images.githubusercontent.com/30465109/163063777-5c86237f-ee88-467a-9531-e3bf24867ec6.png)
-
 Mais le candidat obtient également de bons scores dans les bureaux de classes moyennes. Il récolte 30 % des voix des inscrit-e-s parmi les bureaux dont le niveau de vie moyen est de 20 000 à 25 000 euros.
+
+![image](https://user-images.githubusercontent.com/30465109/163063777-5c86237f-ee88-467a-9531-e3bf24867ec6.png)
 
 #### Dans les bureaux de vote les plus pauvres, la baisse de l'abstention profite à Mélenchon
 
@@ -51,6 +51,9 @@ En 2017, EELV avait soutenu le candidat PS (Hamon); en 2022, chaque parti prése
 ![image](https://user-images.githubusercontent.com/30465109/163381442-a62b478f-ff72-484f-aa3b-2c24466320f6.png)
 
 #### Zemmour attire une partie de l'électorat tradionnel de la droite
+
+
+![image](https://user-images.githubusercontent.com/30465109/163410225-9cd4b6a5-bd40-47d3-9fa6-976f2889b883.png)
 
 ![image](https://user-images.githubusercontent.com/30465109/163382136-c408924a-af71-4be4-93cd-3c3418cc99b4.png)
 
