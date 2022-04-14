@@ -19,19 +19,39 @@ abst_ndv <- filosofi_par_bdv17 %>%
         strip.text = element_text(face="bold",size=15),
         plot.caption = element_text(size=8))
 
-abst_ndv2 <- filosofi_par_bdv17 %>% 
+filosofi_par_bdv17 %>% 
   mutate(Numéro.du.bureau=str_pad(bv2017,4,"left","0") ) %>% 
-  left_join(donnees17 %>% mutate(abst17=Nombre.d.abstentions/Nombre.d.inscrits*100),
+  left_join(donnees17 %>%
+              rename(abst17=Nombre.d.abstentions) %>% 
+              mutate( bloc_gauche17=melenchon+hamon,
+            bloc_droite17=macron+fillon+asselineau+cheminade+lassalle,
+            bloc_extdroite17=lepen+dupontaignan),
             by="Numéro.du.bureau") %>% 
- inner_join(donnees22 %>% mutate(abst22=Nombre.d.abstentions/Nombre.d.inscrits*100) %>% 
-              rename(inscrits22=Nombre.d.inscrits),
-            by="Numéro.du.bureau") %>% 
+ inner_join(donnees22 %>% 
+              rename(abst22=Nombre.d.abstentions,inscrits22=Nombre.d.inscrits,melenchon22=melenchon,macron22=macron) %>% 
+            mutate( bloc_gauche22=melenchon22+jadot+roussel+hidalgo,
+                    bloc_droite22=macron22+pecresse+lassalle,
+                    bloc_extdroite22=lepen+dupontaignan+zemmour)  ,
+            by="Numéro.du.bureau") %>%
+  # mutate(progression=case_when(pmax((bloc_gauche22-bloc_gauche17)/bloc_gauche17,(bloc_droite22-bloc_droite17)/bloc_droite17,(bloc_extdroite22-bloc_extdroite17)/bloc_extdroite17)== (bloc_gauche22-bloc_gauche17)/bloc_gauche17 ~ "gauche" ,
+  #                              pmax((bloc_gauche22-bloc_gauche17)/bloc_gauche17,(bloc_droite22-bloc_droite17)/bloc_droite17,(bloc_extdroite22-bloc_extdroite17)/bloc_extdroite17)==(bloc_droite22-bloc_droite17)/bloc_droite17 ~ "droite" ,
+  #                              pmax((bloc_gauche22-bloc_gauche17)/bloc_gauche17,(bloc_droite22-bloc_droite17)/bloc_droite17,(bloc_extdroite22-bloc_extdroite17)/bloc_extdroite17)== (bloc_extdroite22-bloc_extdroite17)/bloc_extdroite17 ~ "extdroite" ,
+  #                              TRUE ~ "pb")) %>% 
+  mutate(progression=case_when(pmax((bloc_gauche22-bloc_gauche17),(bloc_droite22-bloc_droite17),(bloc_extdroite22-bloc_extdroite17))== (bloc_gauche22-bloc_gauche17) ~ "gauche" ,
+                               pmax((bloc_gauche22-bloc_gauche17),(bloc_droite22-bloc_droite17),(bloc_extdroite22-bloc_extdroite17))==(bloc_droite22-bloc_droite17) ~ "droite" ,
+                               pmax((bloc_gauche22-bloc_gauche17),(bloc_droite22-bloc_droite17),(bloc_extdroite22-bloc_extdroite17))== (bloc_extdroite22-bloc_extdroite17) ~ "extdroite" ,
+                               TRUE ~ "pb")) %>% 
   ggplot(aes(x = Ind_snv/Ind,y=abst22-abst17))+
-  geom_point(aes(size=(inscrits22)),alpha=0.5)+
+  geom_hline(yintercept = 0)+
+  geom_point(aes(color=progression),alpha=0.8,size=4)+
+  scale_color_manual(name="Plus forte progression\nen nombre de voix",
+                     values = c("gauche"="tomato2","extdroite"="peru"),
+                     labels =  c("gauche"="Gauche","extdroite"="Extrême droite"))+
   # ggrepel::geom_text_repel(aes(label=lieu_vote))+
   labs(x="Niveau de vie moyen (€)",
-       y="Ecart des taux d'abstention\n2017 et 2022 (en points)",
-       size="Nombre d'inscrits en 2022",
+       title="Evolution de l'abstention entre 2017 et 2022 et candidat qui progresse le plus",
+       y="Evolution de l'abstention\nentre 2017 et 2022 (nombre de voix)",
+     #  size="Nombre d'inscrit-e-s en 2022",
        caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats des 1ers tours de l'élection présidentielle 2017 et 2022\nInsee, Filosofi 2017\nTraitements et erreurs : @Re_Mi_La")+
   
   theme_minimal()+

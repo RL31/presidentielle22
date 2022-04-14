@@ -2,6 +2,9 @@ library(tidyverse)
 library(sf)
 library(patchwork)
 
+#########################################
+# Chargement des résultats 2017 et 2022 #
+#########################################
 donnees17 <- st_read("donnees/elections-2017-decoupage-des-bureaux-de-vote.shp") %>%
   mutate(Numéro.du.bureau=str_pad(bv2017,4,"left","0") ) %>% 
   st_transform(2154) %>% 
@@ -14,27 +17,33 @@ donnees22 <- st_read("donnees/elec-2021-decoupage-bdv.shp") %>%
   left_join(read.csv("donnees/presid_2022_T1.csv",sep=";",encoding = "Latin10"),
             by="Numéro.du.bureau")
 
-# abstention
+#######################################
+# Quelques résultats sur l'abstention #
+#######################################
+
 donnees17 %>% 
   summarise(abst=sum(Nombre.d.abstentions)/sum(Nombre.d.inscrits)*100)
 
 donnees22 %>% 
   summarise(abst=sum(Nombre.d.abstentions)/sum(Nombre.d.inscrits)*100)
 
-comparaison_abstention <- donnees22 %>% 
+donnees22 %>% 
   bind_rows(donnees17) %>% 
   mutate(tx_abst=Nombre.d.abstentions/Nombre.d.inscrits*100) %>% 
   ggplot()+
   geom_sf(aes(fill=tx_abst),color="white")+
-  scale_fill_steps2(name="Taux d'abstention (%)",low="white",high="black",nice.breaks=FALSE,breaks=c(20,30,40,50))+
+  scale_fill_steps2(name="Taux d'abstention (%)",low="white",high="gray30" ,breaks=c(30,50,70))+
   facet_wrap(~Année)+
-  labs(caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats des 1ers tours de l'élection présidentielle 2017 et 2022\nTraitements et erreurs : @Re_Mi_La")+
+  labs(title="L'abstention diminue dans les bureaux des quartiers populaires",
+       caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats des 1ers tours de l'élection présidentielle 2017 et 2022\nTraitements et erreurs : @Re_Mi_La")+
   theme_void()+
   theme(legend.position = "top",
         strip.text = element_text(face="bold",size=15),
         plot.caption = element_text(size=8))
 
-# principaux candidats
+########################################################
+# Comparaison des résultats des candidats 2022 vs 2017 #
+########################################################
 donnees22 %>% 
   mutate(pct=melenchon/Nombre.d.inscrits*100) %>% view()
 
@@ -82,8 +91,9 @@ comparaison_candidat(CAND17 = "dupontaignan",CAND22="dupontaignan",COUL = "darkb
 comparaison_candidat(CAND17 = "hamon",CAND22="hidalgo",COUL = "deeppink2",TITRE = "Hamon 2017 - Hidalgo 2022")
 comparaison_candidat(CAND17 = "hamon",CAND22="jadot",COUL = "chartreuse4",TITRE = "Hamon 2017 - Jadot 2022")
 
-
-# gauche droite
+######################################
+# Evolution 17-22 des 4 grands blocs #
+######################################
 extgauche17 <- donnees17 %>% 
   mutate(tx_extgauche=(arthaud+poutou)/Nombre.d.inscrits*100) %>% 
   ggplot()+
@@ -206,29 +216,9 @@ extdroite22 <- donnees22 %>%
 
 (extgauche17|gauche17|droite17|extdroite17)/(extgauche22|gauche22|droite22|extdroite22)
 
-
-donnees22 %>% 
-  mutate(tx_extdroite=(lepen+dupontaignan+zemmour)/Nombre.d.inscrits*100,
-         tx_droite=(macron+pecresse+lassalle)/Nombre.d.inscrits*100,
-         tx_gauche=(melenchon+hidalgo+roussel+jadot)/Nombre.d.inscrits*100,
-         tx_extgauche=(arthaud+poutou)/Nombre.d.inscrits*100,
-         tx_nexp=(Nombre.d.abstentions+Nombre.de.bulletins.blancs+Nombre.de.bulletins.nuls)/Nombre.d.inscrits*100,
-         vainqueur = case_when(pmax(tx_extdroite,tx_droite,tx_gauche,tx_extgauche,tx_nexp)==tx_extdroite ~ "exd",
-                               pmax(tx_extdroite,tx_droite,tx_gauche,tx_extgauche,tx_nexp)==tx_droite ~ "droite",
-                               pmax(tx_extdroite,tx_droite,tx_gauche,tx_extgauche,tx_nexp)==tx_gauche ~ "gauche",
-                               pmax(tx_extdroite,tx_droite,tx_gauche,tx_extgauche,tx_nexp)==tx_extgauche ~ "exg",
-                               TRUE ~ "nexp")) %>% 
-  ggplot()+
-  geom_sf(aes(fill=vainqueur),color="white")+
-  scale_fill_manual(name="Meilleur score",
-                    values = c("nexp"="gray20","exg"="darkred","gauche"="red2","droite"="blue","exd"="peru"),
-                    labels =  c("nexp"="Non exprimés","exg"="Extrême gauche","gauche"="Gauche","droite"="Droite","exd"="Extrême droite"))+
-  labs(caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats du 1er tour de l'élection présidentielle 2022\nTraitements et erreurs : @Re_Mi_La")+
-  theme_void()+
-  theme(legend.position = "top",
-        plot.caption = element_text(size=8))
-
-
+######################################
+# Qui est en tête dans chaque bureau #
+######################################
 donnees22 %>% 
   mutate(tx_lepen=(lepen)/Nombre.d.inscrits*100,
          tx_zemmour=(zemmour)/Nombre.d.inscrits*100,
@@ -308,8 +298,9 @@ donnees22 %>%
   select(vainqueur,lieu_vote)
 count(vainqueur)
 
-
-# A qui profite la mobilisation ?
+###################################
+# A qui profite la mobilisation ? #
+###################################
 donnees22 %>%
   bind_rows(donnees17 %>% rename(uniq_bdv=bv2017)) %>% 
   st_drop_geometry() %>% 
@@ -332,12 +323,202 @@ donnees22 %>%
                      values = c("tx_melenchon_2022"="tomato2","tx_macron_2022"="darkorchid2","tx_zemmour_2022"="brown","tx_lepen_2022"="peru"),
                      labels =  c("tx_melenchon_2022"="Mélenchon","tx_macron_2022"="Macron","tx_zemmour_2022"="Zemmour","tx_lepen_2022"="Le Pen"))+
   scale_fill_manual(name="",
-                     values = c("tx_melenchon_2022"="tomato2","tx_macron_2022"="darkorchid2","tx_zemmour_2022"="brown","tx_lepen_2022"="peru"),
-                     labels =  c("tx_melenchon_2022"="Mélenchon","tx_macron_2022"="Macron","tx_zemmour_2022"="Zemmour","tx_lepen_2022"="Le Pen"))+
+                    values = c("tx_melenchon_2022"="tomato2","tx_macron_2022"="darkorchid2","tx_zemmour_2022"="brown","tx_lepen_2022"="peru"),
+                    labels =  c("tx_melenchon_2022"="Mélenchon","tx_macron_2022"="Macron","tx_zemmour_2022"="Zemmour","tx_lepen_2022"="Le Pen"))+
   labs(x="Variation de l'abstention entre 2017 et 2022",
        y="Vote en % d'inscrit-e-s",
+       title="Mélenchon réussit mieux là où l'abstention diminue",
        caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats du 1er tour de l'élection présidentielle 2022\nTraitements et erreurs : @Re_Mi_La")+
   theme_minimal()+
   theme(legend.position = "top",
         plot.caption = element_text(size=8))+
   guides(fill="none")
+
+
+
+donnees22 %>%
+  bind_rows(donnees17 %>% rename(uniq_bdv=bv2017)) %>% 
+  st_drop_geometry() %>% 
+  as.data.frame() %>% 
+  pivot_wider(id_cols = "uniq_bdv",names_from="Année",
+              values_from=c("macron","melenchon","jadot","lepen","fillon","pecresse","zemmour","hidalgo","dupontaignan","hamon","Nombre.d.abstentions")) %>% 
+  mutate(ecartabstention=(Nombre.d.abstentions_2022-Nombre.d.abstentions_2017),#/Nombre.d.abstentions_2017*100,
+         ecart_melenchon=(melenchon_2022-melenchon_2017),#/melenchon_2017*100,
+         ecart_macron=(macron_2022 - macron_2017),#/macron_2017*100,
+         ecart_lr=(pecresse_2022 - fillon_2017),#/fillon_2017*100,
+         ecart_extdroite = (lepen_2022+dupontaignan_2022+zemmour_2022-lepen_2017-dupontaignan_2017),#/(lepen_2017+dupontaignan_2017)*100,
+         ecart_ecosoc = (jadot_2022+hidalgo_2022-hamon_2017),#/hamon_2017*100 
+  ) %>% 
+  select(uniq_bdv,starts_with("ecart")) %>% 
+  pivot_longer(cols=c(starts_with("ecart_")),names_to="candidat",values_to="ecart") %>% 
+  ggplot(aes(x=ecartabstention,y=ecart,color=candidat,fill=candidat))+
+  geom_hline(yintercept = 0,color="black",size=1)+
+  geom_point()+
+  geom_smooth()+
+  coord_equal()+
+  scale_color_manual(name="",
+                     values = c("ecart_melenchon"="tomato2",
+                                "ecart_macron"="darkorchid4",
+                                "ecart_extdroite"="peru",
+                                "ecart_ecosoc"="chartreuse4",
+                                "ecart_lr"="blue"))+
+  scale_fill_manual(name="",
+                    values = c("ecart_melenchon"="tomato2",
+                               "ecart_macron"="darkorchid4",
+                               "ecart_extdroite"="peru",
+                               "ecart_lr"="blue",
+                               "ecart_ecosoc"="chartreuse4"))+
+  labs(x="Evolution de l'abstention entre 2017 et 2022 (%)",
+       y="Evolution du  nombre de voix (%)",
+       title="Mélenchon et l'extrême droite améliorent leurs scores là où l'abstention diminue",
+       caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats du 1er tour des élections présidentielles 2017 et 2022\nTraitements et erreurs : @Re_Mi_La")+
+  # scale_y_continuous(limits = c(-100,200))+
+  facet_wrap(~candidat,labeller = as_labeller(c("ecart_melenchon"="Mélenchon",
+                                                "ecart_macron"="Macron",
+                                                "ecart_lr"="Fillon, Pécresse",
+                                                "ecart_extdroite"="Le Pen, Zemmour, Dupont-Aignan",
+                                                "ecart_ecosoc"="Hamon, Jadot, Hidalgo")))+
+  theme_minimal()+
+  theme(legend.position = "top",
+        plot.caption = element_text(size=8))+
+  guides(fill="none",color="none")
+
+
+######################################################################################
+# Qui récupère le vote Fillon 2017 ? etude des corrélations avec le vote Fillon 2017 #
+######################################################################################
+donnees17  %>% 
+  st_drop_geometry() %>% 
+  as.data.frame() %>% 
+  rename(uniq_bdv=bv2017,nb17=Nombre.d.inscrits,macron17=macron,lepen17=lepen) %>% 
+  mutate(tx_lepen17=lepen17/nb17*100,
+         tx_macron17=macron17/nb17*100) %>% 
+  left_join(donnees22 %>% 
+              st_drop_geometry() %>% 
+              as.data.frame() %>% 
+              rename(lepen22=lepen,macron22=macron),by="uniq_bdv") %>%
+  mutate(tx_fillon=fillon/nb17*100,
+         tx_zemmour=zemmour/Nombre.d.inscrits*100,
+         tx_lepen22=lepen22/Nombre.d.inscrits*100,
+         tx_macron22=macron22/Nombre.d.inscrits*100,
+         tx_pecresse=pecresse/Nombre.d.inscrits*100) %>% 
+  select(uniq_bdv,tx_fillon,tx_zemmour,tx_lepen22,tx_macron22,tx_macron17,tx_lepen17,tx_pecresse) %>% 
+  pivot_longer(cols=c("tx_zemmour","tx_lepen22","tx_lepen17","tx_macron22","tx_macron17","tx_pecresse"),names_to="candidat",values_to="taux") %>% 
+  ggplot(aes(x=tx_fillon,y=taux,color=candidat))+
+  geom_abline(slope = 1)+
+  geom_point(alpha=.7)+
+  coord_equal()+
+  scale_color_manual(values = c("tx_zemmour"="brown","tx_lepen22"="peru","tx_lepen17"="peru","tx_macron22"="darkorchid4",
+    "tx_macron17"="darkorchid4","tx_pecresse"="blue"))+
+  labs(x="Vote Fillon en 2017 (% des inscrit-e-s)",
+       y="Vote (% des inscrit-e-s)",
+       title="Corrélation des votes de droite et d'extrême droite avec le vote Fillon 2017",
+       caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats du 1er tour des élections présidentielles 2017 et 2022\nTraitements et erreurs : @Re_Mi_La")+
+  facet_wrap(facets=~candidat,
+             ncol = 2,
+             labeller = as_labeller(c("tx_zemmour"="Vote Zemmour corr.= 0,86",
+                                                "tx_lepen17"="Vote Le Pen 2017 corr.= -0,34",
+                                                "tx_lepen22"="Vote Le Pen 2022 corr.= -0,06",
+                                                "tx_macron17"="Vote Macron 2017 corr.= 0,56",
+                                                "tx_macron22"="Vote Macron 2022 corr.= 0,87",
+                                                "tx_pecresse"="Vote Pécresse corr.= 0,90")))+
+  theme_minimal()+
+  theme(legend.position = "top",
+        plot.caption = element_text(size=8))+
+  guides(color="none")
+
+#pour les corr
+donnees17  %>% 
+  st_drop_geometry() %>% 
+  as.data.frame() %>% 
+  rename(uniq_bdv=bv2017,nb17=Nombre.d.inscrits,macron17=macron,lepen17=lepen) %>% 
+  mutate(tx_lepen17=lepen17/nb17*100,
+         tx_macron17=macron17/nb17*100) %>% 
+  left_join(donnees22 %>% 
+              st_drop_geometry() %>% 
+              as.data.frame() %>% 
+              rename(lepen22=lepen,macron22=macron),by="uniq_bdv") %>%
+  mutate(tx_fillon=fillon/nb17*100,
+         tx_zemmour=zemmour/Nombre.d.inscrits*100,
+         tx_lepen22=lepen22/Nombre.d.inscrits*100,
+         tx_macron22=macron22/Nombre.d.inscrits*100,
+         tx_pecresse=pecresse/Nombre.d.inscrits*100) %>% 
+  select(uniq_bdv,tx_fillon,tx_zemmour,tx_lepen22,tx_macron22,tx_macron17,tx_lepen17,tx_pecresse) %>% 
+  summarise(correlation_mac17fill=cor(tx_macron17,tx_fillon),
+            correlation_mac22fill=cor(tx_macron22,tx_fillon),
+            correlation_pecfill=cor(tx_pecresse,tx_fillon),
+            correlation_lep17fill=cor(tx_lepen17,tx_fillon),
+            correlation_lep22fill=cor(tx_lepen22,tx_fillon),
+            correlation_zemfill=cor(tx_zemmour,tx_fillon))
+
+
+
+
+
+donnees17  %>% 
+  st_drop_geometry() %>% 
+  as.data.frame() %>% 
+  rename(uniq_bdv=bv2017,nb17=Nombre.d.inscrits,melenchon17=melenchon,macron17=macron) %>% 
+  mutate(tx_melenchon17=melenchon17/nb17*100,
+         tx_macron17=macron17/nb17*100) %>% 
+  left_join(donnees22 %>% 
+              st_drop_geometry() %>% 
+              as.data.frame() %>% 
+              rename(melenchon22=melenchon,macron22=macron),by="uniq_bdv") %>%
+  mutate(tx_hamon=hamon/nb17*100,
+         tx_jadot=jadot/Nombre.d.inscrits*100,
+         tx_melenchon22=melenchon22/Nombre.d.inscrits*100,
+         tx_macron22=macron22/Nombre.d.inscrits*100,
+         tx_macron17=macron17/Nombre.d.inscrits*100,
+         tx_hidalgo=hidalgo/Nombre.d.inscrits*100) %>% 
+  select(uniq_bdv,tx_hamon,tx_jadot,tx_melenchon22,tx_macron22,tx_macron17,tx_melenchon17,tx_hidalgo) %>% 
+  pivot_longer(cols=c("tx_hidalgo","tx_melenchon22","tx_melenchon17","tx_macron22","tx_jadot","tx_hamon"),names_to="candidat",values_to="taux") %>% 
+  ggplot(aes(x=tx_macron17,y=taux,color=candidat))+
+  geom_abline(slope = 1)+
+  geom_point(alpha=.7)+
+  coord_equal()+
+  scale_color_manual(values = c("tx_hamon"="deeppink","tx_jadot"="chartreuse4","tx_melenchon22"="red2","tx_macron22"="darkorchid4",
+                                "tx_melenchon17"="red2","tx_hidalgo"="deeppink"))+
+  labs(x="Vote Macron en 2017 (% des inscrit-e-s)",
+       y="Vote (% des inscrit-e-s)",
+       title="Corrélation avec le vote Macron 2017",
+       caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats du 1er tour des élections présidentielles 2017 et 2022\nTraitements et erreurs : @Re_Mi_La")+
+  facet_wrap(facets=~candidat,
+             nrow = 1,
+              labeller = as_labeller(c("tx_hamon"="Vote Hamon corr.= 0,25",
+                                       "tx_jadot"="Vote Jadot corr.= 0,65",
+                                       "tx_melenchon22"="Vote Mélenchon 2022 corr.= -0,43",
+                                       "tx_macron22"="Vote Macron 2022 corr.= 0,75",
+                                       "tx_melenchon17"="Vote Mélenchon 2017 corr.= -0,32",
+                                       "tx_hidalgo"="Vote Hidalgo corr.= 0,36"))
+             )+
+  theme_minimal()+
+  theme(legend.position = "top",
+        plot.caption = element_text(size=8))+
+  guides(color="none")
+
+
+
+donnees17  %>% 
+  st_drop_geometry() %>% 
+  as.data.frame() %>% 
+  rename(uniq_bdv=bv2017,nb17=Nombre.d.inscrits,melenchon17=melenchon,macron17=macron) %>% 
+  mutate(tx_melenchon17=melenchon17/nb17*100,
+         tx_macron17=macron17/nb17*100) %>% 
+  left_join(donnees22 %>% 
+              st_drop_geometry() %>% 
+              as.data.frame() %>% 
+              rename(melenchon22=melenchon,macron22=macron),by="uniq_bdv") %>%
+  mutate(tx_hamon=hamon/nb17*100,
+         tx_jadot=jadot/Nombre.d.inscrits*100,
+         tx_melenchon22=melenchon22/Nombre.d.inscrits*100,
+         tx_macron22=macron22/Nombre.d.inscrits*100,
+         tx_macron17=macron17/Nombre.d.inscrits*100,
+         tx_hidalgo=hidalgo/Nombre.d.inscrits*100) %>% 
+  select(uniq_bdv,tx_hamon,tx_jadot,tx_melenchon22,tx_macron22,tx_macron17,tx_melenchon17,tx_hidalgo) %>% 
+  summarise(correlation_hamfill=cor(tx_hamon,tx_macron17),
+            correlation_jadfill=cor(tx_jadot,tx_macron17),
+            correlation_mel22fill=cor(tx_melenchon22,tx_macron17),
+            correlation_mac22fill=cor(tx_macron22,tx_macron17),
+            correlation_mel17fill=cor(tx_melenchon17,tx_macron17),
+            correlation_hidfill=cor(tx_hidalgo,tx_macron17))
