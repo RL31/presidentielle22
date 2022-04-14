@@ -32,7 +32,7 @@ La progression de Mélenchon réside en partie dans sa réussite à mobiliser l'
 
 Les deux blocs qui progressent entre 2017 et 2022 sont la gauche (Mélenchon, Roussel, Jadot, Hidalgo en 2022, Mélenchon et Hamon en 2017) et l'extrême droite (Le Pen, Zemmour et Dupont-Aignan en 2022, Le Pen et Dupont-Aignan en 2017). Dans les bureaux de vote où la population est plus pauvre (niveau de vie moyen inférieur à 17 000 €), l'abstention diminue systématiquement et c'est la gauche qui progresse le plus en nombre de voix (et plus précisément Mélenchon). Dans les bureaux de vote à niveau de vie moyen, l'abstention diminue dans la plupart des cas et c'est souvent la gauche qui progresse le plus fortement. A l'inverse, dans les bureaux de vote aisés (niveau de vie moyen supérieur à 27 000 €) ce sont les candidats d'extrême droite qui enregistrent la plus forte progression (autour du candidat Zemmour absent en 2017).
 
-![image](https://user-images.githubusercontent.com/30465109/163379455-45750b20-b357-4a5a-abe0-f13c1c6518d4.png)
+![image](https://user-images.githubusercontent.com/30465109/163383788-e5b8701f-a10d-4beb-977d-c0b7ea1fa3f1.png)
 
 #### La social-écologie reste stable
 
