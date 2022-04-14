@@ -28,7 +28,7 @@ Mais le candidat obtient également de bons scores dans les bureaux de classes m
 
 La progression de Mélenchon réside en partie dans sa réussite à mobiliser l'électorat des quartiers populaires. A Toulouse, entre 2017 et 2022, le taux d'abstention diminue de 3 points (de 26 % à 23 %). Cette légère hausse de la participation n'est pas homogène sur le territoire : elle se fait notamment dans les quartiers de la politique de la ville (Mirail, Empalot, Izard), mais aussi dans le centre ville.
 
-![image](https://user-images.githubusercontent.com/30465109/163176086-beb4febb-d3d4-4f54-8c62-9dbe993685b5.png) 
+![image](https://user-images.githubusercontent.com/30465109/163469714-3406028c-bffe-4d6e-9c46-b4fbc2c54a7b.png)
 
 Les deux blocs qui progressent entre 2017 et 2022 sont la gauche (Mélenchon, Roussel, Jadot, Hidalgo en 2022, Mélenchon et Hamon en 2017) et l'extrême droite (Le Pen, Zemmour et Dupont-Aignan en 2022, Le Pen et Dupont-Aignan en 2017). Dans les bureaux de vote où la population est plus pauvre (niveau de vie moyen inférieur à 17 000 €), l'abstention diminue systématiquement et c'est la gauche qui progresse le plus en nombre de voix (et plus précisément Mélenchon). Dans les bureaux de vote à niveau de vie moyen, l'abstention diminue dans la plupart des cas et c'est souvent la gauche qui progresse le plus fortement. A l'inverse, dans les bureaux de vote aisés (niveau de vie moyen supérieur à 27 000 €) ce sont les candidats d'extrême droite qui enregistrent la plus forte progression (autour du candidat Zemmour absent en 2017).
 
@@ -36,25 +36,42 @@ Les deux blocs qui progressent entre 2017 et 2022 sont la gauche (Mélenchon, Ro
 
 #### La social-écologie reste stable
 
-En 2017, EELV avait soutenu le candidat PS (Hamon); en 2022, chaque parti présente son-sa candidat-e mais le score reste stable : 6 % des inscrit-e-s ont voté pour Jadot et 2 % pour Hidalgo. En 2017, une partie de l'électorat PS s'était tournée vers Macron.
+En 2022, et contrairement à 2017, PS et EELV font cavalier seul. Leurs scores additionnés restent identiques malgré une probable évolution de l'électorat en 5 ans. Les résultats de Jadot sont bien plus corrélés aux résultats de Macron en 2017 que ne l'étaient ceux de Hamon. Parallèlement, les scores de Macron sont moins bons dans les bureaux où il était déjà faible en 2017, mais s'améliorent dans ceux où il était déjà bon. Jadot (et sans doute Hidalgo) auraient ainsi récoltés quelques votes de déçus du centre-gauche du macronisme.
 
-![image](https://user-images.githubusercontent.com/30465109/163380268-d17f12b0-1f49-4987-9e08-e03d19924161.png)
+![image](https://user-images.githubusercontent.com/30465109/163464536-f3c23c83-fb26-4a8d-92f2-65cc00d3deb6.png)
+
+L'électorat de Jadot est très différent de celui de Mélenchon. Il enregistre ses meilleurs scores dans les bureaux à niveaux de vie moyens à aisés (de 20 000 euros à 30 000 euros), qui comptent très peu de chômeurs ou d'ouvriers. En revanche, les parts de cadres mais aussi de professions intermédiaires sont élevées (sans être maximales) dans les bureaux où il récolte plus de 5 % des voix des inscrit-e-s.
+
 ![image](https://user-images.githubusercontent.com/30465109/163382372-9564519d-117c-48c6-bb36-19922a535f9e.png)
 
 
 ## A droite et à l'extrême droite, Macron et Zemmour fissurent l'électorat des Républicains 
 
-#### Macron, un succès en demi-teinte ? 
+#### Macron avance sur sa jambe droite
+
+En 2017, Macron avait tiré à lui une partie de l'électorat du Parti Socialiste. En 2022, il prospère dans les bureaux de vote traditionnellement inféodés aux Républicains. A Côte Pavée, Limayrac, Lardenne et Pouvourville, il récolte ainsi plus de 30 % des suffrages des personnes inscrites. 
 
 ![image](https://user-images.githubusercontent.com/30465109/163381502-d1bb0025-cd95-446c-929b-9dc4c0e9a6ba.png)
+
+Son score augmente très linéairement avec le niveau de vie moyen de la population des bureaux de vote : moins de 10 % des inscrit-e-s lorsque le niveau de vie est inférieur à 15 000 euros, plus de 30% lorsque celui-ci est supérieur à 30 000 euros. Il enregistre ainsi ses meilleurs scores dans les quartiers qui comptent le plus de cadres mais aussi d'artisans, commerçants et chefs d'entreprise. En revanche, c'est dans les quartiers où vivent le plus d'ouvriers et de chômeurs qu'il est au plus bas (moins  de 15 % des inscrit-e-s).
 
 ![image](https://user-images.githubusercontent.com/30465109/163381442-a62b478f-ff72-484f-aa3b-2c24466320f6.png)
 
 #### Zemmour attire une partie de l'électorat tradionnel de la droite
 
-
-![image](https://user-images.githubusercontent.com/30465109/163410225-9cd4b6a5-bd40-47d3-9fa6-976f2889b883.png)
+La carte des scores de Zemmour n'a pas beaucoup de points communs avec celle de Le Pen. Celle-ci enregistre ses meilleurs scores aux confins de la ville : la carte montre clairement un gradient qui progresse au fur et à mesure que les bureaux sont éloignés de l'hypercentre. La géographie du vote Zemmour colle au contraire très bien au vote Fillon de 2017 : c'est à Côte Pavée, Limayrac, Carmes, Saint-Etienne et Pouvourville qu'ils réalise plus de 5 % voire plus de 10%.
 
 ![image](https://user-images.githubusercontent.com/30465109/163382136-c408924a-af71-4be4-93cd-3c3418cc99b4.png)
 
 ![image](https://user-images.githubusercontent.com/30465109/163382188-c2d4621e-c7ca-490e-8db2-d3db6776b127.png)
+
+Sociologiquement, les bureaux où Zemmour réussit le mieux sont d'ailleurs plus proches de ceux de Fillon 2017 : part élevée de cadres, d'artisans, commerçants et chefs d'entreprise et des ménages les plus riches. Les bureaux les plus favorables à Le Pen (plus de 10 %) sont au contraire composés de parts élevées d'ouvriers, d'employés et de professions intermédiaires. En revanche, dans les quartiers qui comptent le plus d'ouvriers et de chômeurs, la candidate qui souhaite instaurer une "préférence nationale" réalise certains de ses moins bons scores.
+
+![image](https://user-images.githubusercontent.com/30465109/163476317-5b167127-96cf-450d-9919-a7bfa7a0cebd.png)
+![image](https://user-images.githubusercontent.com/30465109/163476368-eb5ce1b5-bdb3-4ee1-896c-687c4da278bd.png)
+
+L'étude de la corrélation entre les votes Macron, Le Pen, Zemmour et le vote Fillon 2017 confirme ces analyses. C'est principalement dans les bureaux où Fillon enregistrait en 2017 ses meilleurs scores que le score Macron progresse. Du côté de l'extrême droite, les votes Le Pen 2017 et 2020 sont corrélés négativement au vote Fillon, à l'inverse du vote Zemmour.
+
+
+![image](https://user-images.githubusercontent.com/30465109/163458893-760e9248-d016-4b54-b52a-e30ac0c175c3.png)
+
