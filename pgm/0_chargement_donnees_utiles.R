@@ -35,6 +35,7 @@ file.remove("donnees/RP18_iris_csv.zip")
 ##############################################################
 # Chargement des contours des bureaux de vote (open data TM) #
 ##############################################################
+# fond 2021 identique à 2022
 lien_bureaux <- "https://data.toulouse-metropole.fr/explore/dataset/elections-2017-decoupage-des-bureaux-de-vote/download/?format=shp&timezone=Europe/Berlin&lang=fr"
 download.file(url=lien_bureaux,destfile = "donnees/elections-2017-decoupage-bureaux-de-vote.zip")
 unzip(zipfile = "donnees/elections-2017-decoupage-des-bureaux-de-vote.zip",

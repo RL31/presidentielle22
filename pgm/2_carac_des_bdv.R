@@ -10,8 +10,6 @@ pauvres <- st_read("donnees/elections-2017-decoupage-des-bureaux-de-vote.shp") %
   ggplot()+
   geom_sf(aes(fill=tx_pauvrete),color="white")+
   scale_fill_stepsn(name="Taux de pauvreté (%)",colors = c("white","firebrick2"))+
-  # labs(caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote\nInsee, Filosofi 2017\n
-  #      Traitements et erreurs : @Re_Mi_La")+
   theme_void()+
   theme(legend.position = "top")
 
@@ -23,8 +21,6 @@ logsoc <- st_read("donnees/elections-2017-decoupage-des-bureaux-de-vote.shp") %>
   ggplot()+
   geom_sf(aes(fill=tx_logsoc),color="white")+
   scale_fill_stepsn(name="Part de\nlogements sociaux (%)",colors = c("white","hotpink4"))+
-  # labs(caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote\nInsee, Filosofi 2017\n
-  #      Traitements et erreurs : @Re_Mi_La")+
   theme_void()+
   theme(legend.position = "top")
 
@@ -36,8 +32,6 @@ proprio <- st_read("donnees/elections-2017-decoupage-des-bureaux-de-vote.shp") %
   ggplot()+
   geom_sf(aes(fill=tx_proprio),color="white")+
   scale_fill_stepsn(name="Part de\npropriétaires (%)",colors = c("white","seagreen"))+
-  # labs(caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote\nInsee, Filosofi 2017\n
-  #      Traitements et erreurs : @Re_Mi_La")+
   theme_void()+
   theme(legend.position = "top")
 
@@ -48,8 +42,6 @@ ndv <- st_read("donnees/elections-2017-decoupage-des-bureaux-de-vote.shp") %>%
   ggplot()+
   geom_sf(aes(fill=ndv),color="white")+
   scale_fill_stepsn(name="Niveau de vie moyen\n(milliers d'€)",colors = c("white","slateblue4"))+
-  # labs(caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote\nInsee, Filosofi 2017\n
-  #      Traitements et erreurs : @Re_Mi_La")+
   theme_void()+
   theme(legend.position = "top")
 
@@ -77,8 +69,6 @@ enfants <- st_read("donnees/elections-2017-decoupage-des-bureaux-de-vote.shp") %
   ggplot()+
   geom_sf(aes(fill=tx_m11),color="white")+
   scale_fill_stepsn(name="Part des moins\nde 11 ans (%)",colors = c("white","skyblue3"))+
-  # labs(caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote\nInsee, Filosofi 2017\n
-  #      Traitements et erreurs : @Re_Mi_La")+
   theme_void()+
   theme(legend.position = "top")
 

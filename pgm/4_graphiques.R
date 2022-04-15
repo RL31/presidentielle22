@@ -33,10 +33,6 @@ filosofi_par_bdv17 %>%
                     bloc_droite22=macron22+pecresse+lassalle,
                     bloc_extdroite22=lepen+dupontaignan+zemmour)  ,
             by="Numéro.du.bureau") %>%
-  # mutate(progression=case_when(pmax((bloc_gauche22-bloc_gauche17)/bloc_gauche17,(bloc_droite22-bloc_droite17)/bloc_droite17,(bloc_extdroite22-bloc_extdroite17)/bloc_extdroite17)== (bloc_gauche22-bloc_gauche17)/bloc_gauche17 ~ "gauche" ,
-  #                              pmax((bloc_gauche22-bloc_gauche17)/bloc_gauche17,(bloc_droite22-bloc_droite17)/bloc_droite17,(bloc_extdroite22-bloc_extdroite17)/bloc_extdroite17)==(bloc_droite22-bloc_droite17)/bloc_droite17 ~ "droite" ,
-  #                              pmax((bloc_gauche22-bloc_gauche17)/bloc_gauche17,(bloc_droite22-bloc_droite17)/bloc_droite17,(bloc_extdroite22-bloc_extdroite17)/bloc_extdroite17)== (bloc_extdroite22-bloc_extdroite17)/bloc_extdroite17 ~ "extdroite" ,
-  #                              TRUE ~ "pb")) %>% 
   mutate(progression=case_when(pmax((bloc_gauche22-bloc_gauche17),(bloc_droite22-bloc_droite17),(bloc_extdroite22-bloc_extdroite17))== (bloc_gauche22-bloc_gauche17) ~ "gauche" ,
                                pmax((bloc_gauche22-bloc_gauche17),(bloc_droite22-bloc_droite17),(bloc_extdroite22-bloc_extdroite17))==(bloc_droite22-bloc_droite17) ~ "droite" ,
                                pmax((bloc_gauche22-bloc_gauche17),(bloc_droite22-bloc_droite17),(bloc_extdroite22-bloc_extdroite17))== (bloc_extdroite22-bloc_extdroite17) ~ "extdroite" ,
@@ -47,19 +43,14 @@ filosofi_par_bdv17 %>%
   scale_color_manual(name="Plus forte progression\nen nombre de voix",
                      values = c("gauche"="tomato2","extdroite"="peru"),
                      labels =  c("gauche"="Gauche","extdroite"="Extrême droite"))+
-  # ggrepel::geom_text_repel(aes(label=lieu_vote))+
   labs(x="Niveau de vie moyen (€)",
        title="Evolution de l'abstention entre 2017 et 2022 et candidat qui progresse le plus",
        y="Evolution de l'abstention\nentre 2017 et 2022 (nombre de voix)",
-     #  size="Nombre d'inscrit-e-s en 2022",
        caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats des 1ers tours de l'élection présidentielle 2017 et 2022\nInsee, Filosofi 2017\nTraitements et erreurs : @Re_Mi_La")+
-  
   theme_minimal()+
   theme(legend.position = "top",
         strip.text = element_text(face="bold",size=15),
         plot.caption = element_text(size=8))
-
-
 
 abst_chom <- bv_infosRP %>% 
   mutate(Numéro.du.bureau=str_pad(bv2017,4,"left","0") ) %>% 
@@ -124,7 +115,6 @@ graphiques_catsoc <- function(CAND="Macron",VAR="Nombre.de.voix.du.candidat.2",C
   
 }
 
-
 graphiques_catsoc(CAND="Macron",VAR="macron",COUL="darkorchid4")
 graphiques_catsoc(CAND="abst",VAR="Nombre.d.abstentions",COUL="black")
 graphiques_catsoc(CAND="Jadot",VAR="jadot",COUL="chartreuse4")
@@ -134,8 +124,9 @@ graphiques_catsoc(CAND="Hidalgo",VAR="hidalgo",COUL="deeppink2")
 graphiques_catsoc(CAND="Roussel",VAR="roussel",COUL="red3")
 graphiques_catsoc(CAND="Lassalle",VAR="lassalle",COUL="cadetblue")
 graphiques_catsoc(CAND="Pécresse",VAR="pecresse",COUL="blue")
-graphiques_catsoc(CAND="Zemmour",VAR="zemmour",COUL="brown")
+graphiques_catsoc(CAND="Zemmour",VAR="zemmour",COUL="tan4")
 
+# graphique sur le vélotaf
 
 bv22_infosRP %>% 
   mutate(Numéro.du.bureau=str_pad(uniq_bdv,4,"left","0") ) %>% 

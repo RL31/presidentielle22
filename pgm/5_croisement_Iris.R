@@ -1,14 +1,16 @@
 library(tidyverse)
 library(sf)
 
+##########################################################################################
+# Programme qui équirépartit les données RP 2018 à l'Iris  dans les bureaux de vote 2022 #
+##########################################################################################
+
 RP <- read.csv("donnees/base-ic-activite-residents-2018.csv",sep=";")
 
 fond_iris <- st_read("donnees/CONTOURS-IRIS_2-1__SHP__FRA_2020-01-01/CONTOURS-IRIS/1_DONNEES_LIVRAISON_2020-12-00282/CONTOURS-IRIS_2-1_SHP_LAMB93_FXX-2020/CONTOURS-IRIS.shp") %>% 
   filter(INSEE_COM=="31555")
 fond_bv17 <- st_read("donnees/elections-2017-decoupage-des-bureaux-de-vote.shp")
 fond_bv22 <- st_read("donnees/elec-2021-decoupage-bdv.shp")
-
-
 
 intersection_bv_iris <- st_intersection(fond_iris %>% 
                                           mutate(surface_iris=st_area(.)),

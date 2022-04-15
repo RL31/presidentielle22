@@ -1,4 +1,5 @@
 # adaptation du pgm téléchargeable ici : https://www.insee.fr/fr/statistiques/4176290?sommaire=4176305
+# il faudrait affiner en équirépartissant les individus des carreaux ; mais moins gênant ici car 200m
 
 # Ceci est un exemple de fonction permettant de calculer des agrégats sur des zones quelconques à
 # partir des données carroyées à 200m au format csv.

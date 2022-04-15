@@ -83,7 +83,7 @@ comparaison_candidat <- function(CAND17="macron",CAND22="macron",COUL="darkorchi
 comparaison_candidat(CAND17 = "macron",CAND22="macron",COUL = "darkorchid4",TITRE="Macron")
 comparaison_candidat(CAND17 = "fillon",CAND22="pecresse",COUL = "blue",TITRE = "Fillon-Pécresse")
 comparaison_candidat(CAND17 = "lepen",CAND22="lepen",COUL = "peru",TITRE = "Le Pen")
-comparaison_candidat(CAND17 = "lepen",CAND22="zemmour",COUL = "brown",TITRE = "Le Pen 2017 - Zemmour 2022")
+comparaison_candidat(CAND17 = "lepen",CAND22="zemmour",COUL = "tan4",TITRE = "Le Pen 2017 - Zemmour 2022")
 comparaison_candidat(CAND17 = "arthaud",CAND22="arthaud",COUL = "darkred",TITRE = "Arthaud")
 comparaison_candidat(CAND17 = "poutou",CAND22="poutou",COUL = "darkred",TITRE = "Poutou")
 comparaison_candidat(CAND17 = "lassalle",CAND22="lassalle",COUL = "blue",TITRE = "Lassalle")
@@ -219,6 +219,7 @@ extdroite22 <- donnees22 %>%
 ######################################
 # Qui est en tête dans chaque bureau #
 ######################################
+# carte
 donnees22 %>% 
   mutate(tx_lepen=(lepen)/Nombre.d.inscrits*100,
          tx_zemmour=(zemmour)/Nombre.d.inscrits*100,
@@ -246,15 +247,17 @@ donnees22 %>%
                      couleur = if_else(indic=="tx_macron","darkorchid2","tomato2")),
             aes(label=paste0(tx," %"),x=x,y=y,color=couleur), fontface="bold",size=10)+
   scale_color_identity()+
-  scale_fill_manual(name="",
-                    values = c("melenchon"="tomato2","macron"="darkorchid2","nexprimes"="gray60","lepen"="peru"),
-                    labels =  c("melenchon"="Mélenchon","macron"="Macron","nexprimes"="Non exprimés","lepen"="Le Pen"))+
-  labs(caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats du 1er tour de l'élection présidentielle 2022\nTraitements et erreurs : @Re_Mi_La")+
+  scale_fill_manual(name="Candidat en tête",
+                    values = c("melenchon"="tomato2","macron"="darkorchid2","nexprimes"="gray90"),
+                    labels =  c("melenchon"="Mélenchon","macron"="Macron","nexprimes"="Non exprimés"))+
+  labs(title = "Avec 28 % des voix des inscrit-e-s, Mélenchon est en tête\ndans 163 bureaux\n ",
+    caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats du 1er tour de l'élection présidentielle 2022\nTraitements et erreurs : @Re_Mi_La")+
   theme_void()+
   theme(legend.position = "top",
-        plot.caption = element_text(size=8))+
+        plot.caption = element_text(size=8))
   guides(fill="none")
 
+# fréquence vainqueur
 donnees22 %>% 
   mutate(tx_lepen=(lepen)/Nombre.d.inscrits*100,
          tx_zemmour=(zemmour)/Nombre.d.inscrits*100,
@@ -372,7 +375,6 @@ donnees22 %>%
        y="Evolution du  nombre de voix (%)",
        title="Mélenchon et l'extrême droite améliorent leurs scores là où l'abstention diminue",
        caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats du 1er tour des élections présidentielles 2017 et 2022\nTraitements et erreurs : @Re_Mi_La")+
-  # scale_y_continuous(limits = c(-100,200))+
   facet_wrap(~candidat,labeller = as_labeller(c("ecart_melenchon"="Mélenchon",
                                                 "ecart_macron"="Macron",
                                                 "ecart_lr"="Fillon, Pécresse",
@@ -408,14 +410,14 @@ donnees17  %>%
   geom_abline(slope = 1)+
   geom_point(alpha=.7)+
   coord_equal()+
-  scale_color_manual(values = c("tx_zemmour"="brown","tx_lepen22"="peru","tx_lepen17"="peru","tx_macron22"="darkorchid4",
+  scale_color_manual(values = c("tx_zemmour"="tan4","tx_lepen22"="peru","tx_lepen17"="peru","tx_macron22"="darkorchid4",
     "tx_macron17"="darkorchid4","tx_pecresse"="blue"))+
   labs(x="Vote Fillon en 2017 (% des inscrit-e-s)",
        y="Vote (% des inscrit-e-s)",
        title="Corrélation des votes de droite et d'extrême droite avec le vote Fillon 2017",
        caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats du 1er tour des élections présidentielles 2017 et 2022\nTraitements et erreurs : @Re_Mi_La")+
   facet_wrap(facets=~candidat,
-             ncol = 2,
+             nrow = 1,
              labeller = as_labeller(c("tx_zemmour"="Vote Zemmour corr.= 0,86",
                                                 "tx_lepen17"="Vote Le Pen 2017 corr.= -0,34",
                                                 "tx_lepen22"="Vote Le Pen 2022 corr.= -0,06",
@@ -427,7 +429,7 @@ donnees17  %>%
         plot.caption = element_text(size=8))+
   guides(color="none")
 
-#pour les corr
+# pour les corr
 donnees17  %>% 
   st_drop_geometry() %>% 
   as.data.frame() %>% 
@@ -453,8 +455,7 @@ donnees17  %>%
 
 
 
-
-
+# Corrélation des votes de gauche avec Macron 2017
 donnees17  %>% 
   st_drop_geometry() %>% 
   as.data.frame() %>% 
@@ -498,7 +499,7 @@ donnees17  %>%
   guides(color="none")
 
 
-
+# pour le corr
 donnees17  %>% 
   st_drop_geometry() %>% 
   as.data.frame() %>% 
