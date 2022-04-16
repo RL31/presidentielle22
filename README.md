@@ -61,7 +61,7 @@ Son score augmente très linéairement avec le niveau de vie moyen de la populat
 
 #### Zemmour attire une partie de l'électorat tradionnel de la droite
 
-La carte des scores de Zemmour n'a pas beaucoup de points communs avec celle de Le Pen. Celle-ci enregistre ses meilleurs scores aux confins de la ville : la carte montre clairement un gradient qui progresse au fur et à mesure que les bureaux s'éloignent de l'hypercentre. La géographie du vote Zemmour colle au contraire très bien au vote Fillon de 2017 : c'est à Côte Pavée, Limayrac, Carmes, Saint-Etienne et Pouvourville qu'il réalise plus de 5 % voire plus de 10 %.
+La carte des scores de Zemmour n'a pas beaucoup de points communs avec celle de Le Pen. Celle-ci enregistre ses meilleurs scores aux confins de la ville : la carte montre clairement un gradient qui progresse au fur et à mesure que les bureaux s'éloignent de l'hypercentre (à l'exception des quartiers périphériques les plus aisés). La géographie du vote Zemmour colle au contraire très bien au vote Fillon de 2017 : c'est à Côte Pavée, Limayrac, Carmes, Saint-Etienne et Pouvourville qu'il réalise plus de 5 % voire plus de 10 %.
 
 ![image](https://user-images.githubusercontent.com/30465109/163555019-6c0fd434-26bb-4f17-8a54-3cd5e816f559.png)
 
