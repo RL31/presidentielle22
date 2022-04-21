@@ -22,6 +22,20 @@ unzip(zipfile = "donnees/RP18_iris_csv.zip",
 
 file.remove("donnees/RP18_iris_csv.zip")
 
+# Pour ajout diplômes
+lien_RP_iris_diplomes <- "https://www.insee.fr/fr/statistiques/fichier/5650712/base-ic-diplomes-formation-2018_csv.zip"
+download.file(url=lien_RP_iris_diplomes,destfile = "donnees/RP18_diplomes_iris_csv.zip")
+unzip(zipfile = "donnees/RP18_diplomes_iris_csv.zip",
+      exdir = "donnees")
+file.remove("donnees/RP18_diplomes_iris_csv.zip")
+
+# Pour ajout immigrés
+lien_RP_iris_immigres <- "https://www.insee.fr/fr/statistiques/fichier/5650720/base-ic-evol-struct-pop-2018_csv.zip"
+download.file(url=lien_RP_iris_immigres,destfile = "donnees/RP18_immigres_iris_csv.zip")
+unzip(zipfile = "donnees/RP18_immigres_iris_csv.zip",
+      exdir = "donnees")
+file.remove("donnees/RP18_immigres_iris_csv.zip")
+
 #################
 # Fond Iris IGN #
 #################

@@ -6,6 +6,11 @@ library(sf)
 ##########################################################################################
 
 RP <- read.csv("donnees/base-ic-activite-residents-2018.csv",sep=";")
+RP_dipl <- read.csv("donnees/base-ic-diplomes-formation-2018.csv",sep=";") %>%
+  mutate(P18_NSCOL15P_SUP = P18_NSCOL15P_SUP2+P18_NSCOL15P_SUP34+P18_NSCOL15P_SUP5) %>% 
+  select(IRIS,P18_NSCOL15P,P18_NSCOL15P_SUP)
+RP_immig <- read.csv("donnees/base-ic-evol-struct-pop-2018.csv",sep=";") %>%
+  select(IRIS,P18_POP ,P18_POP_IMM )
 
 fond_iris <- st_read("donnees/CONTOURS-IRIS_2-1__SHP__FRA_2020-01-01/CONTOURS-IRIS/1_DONNEES_LIVRAISON_2020-12-00282/CONTOURS-IRIS_2-1_SHP_LAMB93_FXX-2020/CONTOURS-IRIS.shp") %>% 
   filter(INSEE_COM=="31555")
@@ -22,7 +27,13 @@ intersection_bv_iris <- st_intersection(fond_iris %>%
 
 bv22_infosRP <- intersection_bv_iris %>% 
   left_join(RP,by=c("CODE_IRIS"="IRIS")) %>% 
-  mutate(CHOM = P18_CHOM1564*part_iris,
+  left_join(RP_dipl,by=c("CODE_IRIS"="IRIS")) %>% 
+  left_join(RP_immig,by=c("CODE_IRIS"="IRIS")) %>% 
+  mutate(IMMIG = P18_POP_IMM*part_iris,
+         P18_POP = P18_POP*part_iris,
+         DSUP = P18_NSCOL15P_SUP*part_iris,
+         P18_NSCOL15P = P18_NSCOL15P*part_iris,
+         CHOM = P18_CHOM1564*part_iris,
          NSAL = P18_NSAL15P*part_iris,
          AGRI = C18_ACTOCC1564_CS1*part_iris,
          ART_COM = C18_ACTOCC1564_CS2*part_iris,
@@ -46,5 +57,7 @@ bv22_infosRP <- intersection_bv_iris %>%
             tx_etud = sum(ETUD)/sum(POP)*100,
             tx_retr = sum(RETR)/sum(POP)*100,
             tx_ouv=sum(OUV)/sum(POP)*100,
+            tx_dsup = sum(P18_NSCOL15P_SUP)/sum(P18_NSCOL15P)*100,
+            tx_immig = sum(IMMIG)/sum(P18_POP)*100,
             tx_velo=sum(VELO)/sum(ACTOPP)*100) %>% 
   ungroup()

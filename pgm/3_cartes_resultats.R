@@ -429,6 +429,51 @@ donnees17  %>%
         plot.caption = element_text(size=8))+
   guides(color="none")
 
+donnees17  %>% 
+  st_drop_geometry() %>% 
+  as.data.frame() %>% 
+  rename(uniq_bdv=bv2017,nb17=Nombre.d.inscrits,macron17=macron,lepen17=lepen) %>% 
+  mutate(tx_lepen17=lepen17/nb17*100,
+         tx_macron17=macron17/nb17*100) %>% 
+  left_join(donnees22 %>% 
+              st_drop_geometry() %>% 
+              as.data.frame() %>% 
+              rename(lepen22=lepen,macron22=macron),by="uniq_bdv") %>%
+  mutate(tx_fillon=fillon/nb17*100,
+         tx_zemmour=zemmour/Nombre.d.inscrits*100,
+         tx_lepen22=lepen22/Nombre.d.inscrits*100,
+         tx_macron22=macron22/Nombre.d.inscrits*100,
+         tx_pecresse=pecresse/Nombre.d.inscrits*100) %>% 
+  select(uniq_bdv,tx_fillon,tx_zemmour,tx_lepen22,tx_macron22,tx_macron17,tx_lepen17,tx_pecresse) %>% 
+  pivot_longer(cols=c("tx_zemmour","tx_lepen22","tx_lepen17","tx_macron22","tx_macron17","tx_pecresse"),names_to="candidat",values_to="taux") %>% 
+
+  # bv22_infosRP %>% 
+  # mutate(Numéro.du.bureau=str_pad(uniq_bdv,4,"left","0") ) %>% 
+  # left_join(donnees22 %>% st_drop_geometry() %>% as.data.frame(),by="uniq_bdv") %>% 
+  left_join(filosofi_par_bdv22,by="uniq_bdv") %>% 
+  mutate(ndv=Ind_snv/Ind/1000) %>% 
+  ggplot(aes(x=tx_fillon,y=taux,color=ndv))+
+  geom_abline(slope = 1)+
+  geom_point(alpha=.7)+
+  coord_equal()+
+  labs(x="Vote Fillon en 2017 (% des inscrit-e-s)",
+       y="Vote (% des inscrit-e-s)",
+       color="Niveau de vie moyen\n(milliers d'euros)",
+       title="Corrélation des votes de droite et d'extrême droite avec le vote Fillon 2017",
+       caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats du 1er tour des élections présidentielles 2017 et 2022\nInsee, Filosofi 2017\nTraitements et erreurs : @Re_Mi_La")+
+  facet_wrap(facets=~candidat,
+             nrow = 1,
+             labeller = as_labeller(c("tx_zemmour"="Vote Zemmour\ncorr.= 0,86",
+                                      "tx_lepen17"="Vote Le Pen 2017\n corr.= -0,34",
+                                      "tx_lepen22"="Vote Le Pen 2022\ncorr.= -0,06",
+                                      "tx_macron17"="Vote Macron 2017\ncorr.= 0,56",
+                                      "tx_macron22"="Vote Macron 2022\ncorr.= 0,87",
+                                      "tx_pecresse"="Vote Pécresse\ncorr.= 0,90")))+
+  theme_minimal()+
+  theme(legend.position = "top",
+        plot.caption = element_text(size=8),
+        strip.text = element_text(face="bold",size=10))
+
 # pour les corr
 donnees17  %>% 
   st_drop_geometry() %>% 
@@ -474,6 +519,8 @@ donnees17  %>%
          tx_hidalgo=hidalgo/Nombre.d.inscrits*100) %>% 
   select(uniq_bdv,tx_hamon,tx_jadot,tx_melenchon22,tx_macron22,tx_macron17,tx_melenchon17,tx_hidalgo) %>% 
   pivot_longer(cols=c("tx_hidalgo","tx_melenchon22","tx_melenchon17","tx_macron22","tx_jadot","tx_hamon"),names_to="candidat",values_to="taux") %>% 
+  left_join(filosofi_par_bdv22,by="uniq_bdv") %>% 
+  mutate(ndv=Ind_snv/Ind/1000) %>% 
   ggplot(aes(x=tx_macron17,y=taux,color=candidat))+
   geom_abline(slope = 1)+
   geom_point(alpha=.7)+
@@ -497,6 +544,51 @@ donnees17  %>%
   theme(legend.position = "top",
         plot.caption = element_text(size=8))+
   guides(color="none")
+
+donnees17  %>% 
+  st_drop_geometry() %>% 
+  as.data.frame() %>% 
+  rename(uniq_bdv=bv2017,nb17=Nombre.d.inscrits,melenchon17=melenchon,macron17=macron) %>% 
+  mutate(tx_melenchon17=melenchon17/nb17*100,
+         tx_macron17=macron17/nb17*100) %>% 
+  left_join(donnees22 %>% 
+              st_drop_geometry() %>% 
+              as.data.frame() %>% 
+              rename(melenchon22=melenchon,macron22=macron),by="uniq_bdv") %>%
+  mutate(tx_hamon=hamon/nb17*100,
+         tx_jadot=jadot/Nombre.d.inscrits*100,
+         tx_melenchon22=melenchon22/Nombre.d.inscrits*100,
+         tx_macron22=macron22/Nombre.d.inscrits*100,
+         tx_macron17=macron17/Nombre.d.inscrits*100,
+         tx_hidalgo=hidalgo/Nombre.d.inscrits*100) %>% 
+  select(uniq_bdv,tx_hamon,tx_jadot,tx_melenchon22,tx_macron22,tx_macron17,tx_melenchon17,tx_hidalgo) %>% 
+  pivot_longer(cols=c("tx_hidalgo","tx_melenchon22","tx_melenchon17","tx_macron22","tx_jadot","tx_hamon"),names_to="candidat",values_to="taux") %>% 
+  left_join(filosofi_par_bdv22,by="uniq_bdv") %>% 
+  mutate(ndv=Ind_snv/Ind/1000) %>% 
+  ggplot(aes(x=tx_macron17,y=taux,color=ndv))+
+  geom_abline(slope = 1)+
+  geom_point(alpha=.7)+
+  coord_equal()+
+ labs(x="Vote Macron en 2017 (% des inscrit-e-s)",
+       y="Vote (% des inscrit-e-s)",
+       title="Corrélation avec le vote Macron 2017",
+      color="Niveau de vie moyen\n(milliers d'euros)",
+                   caption = "Source : Mairie de Toulouse, Découpage des bureaux de vote,\nRésultats du 1er tour des élections présidentielles 2017 et 2022\nInsee, Filosofi 2017\nTraitements et erreurs : @Re_Mi_La")+
+  facet_wrap(facets=~candidat,
+             nrow = 1,
+             labeller = as_labeller(c("tx_hamon"="Vote Hamon\ncorr.= 0,25",
+                                      "tx_jadot"="Vote Jadot\ncorr.= 0,65",
+                                      "tx_melenchon22"="Vote Mélenchon 2022\ncorr.= -0,43",
+                                      "tx_macron22"="Vote Macron 2022\ncorr.= 0,75",
+                                      "tx_melenchon17"="Vote Mélenchon 2017\ncorr.= -0,32",
+                                      "tx_hidalgo"="Vote Hidalgo\ncorr.= 0,36"))
+  )+
+  theme_minimal()+
+  theme(legend.position = "top",
+        plot.caption = element_text(size=8),
+        strip.text = element_text(face="bold",size=10))
+  guides(color="none")
+
 
 
 # pour le corr

@@ -50,6 +50,7 @@ listeIndicDef <- c("Ind","Men","Men_pauv","Men_1ind","Men_5ind","Men_prop","Men_
 #'                     c("01001","01002"), 
 #'                     c("Ind_40_54","Ind_55_64"))
 calculAgregatsZones <- function(cheminFichierContoursSHP, 
+                                SHP=1,
                                 cheminFichierCSV, 
                                 listeCodesCommune, 
                                 listeIndic = listeIndicDef)
@@ -98,8 +99,14 @@ calculAgregatsZones <- function(cheminFichierContoursSHP,
   carreauxSf <- sf::st_as_sf(carreaux, wkt = "geometry", crs = epsg)
   
   # contours des zones sur lesquelles on souhaite connaître les agrégats
-  zones <- sf::st_read(cheminFichierContoursSHP) %>%
-    sf::st_transform(epsg)
+  if (SHP==1){
+    zones <- sf::st_read(cheminFichierContoursSHP) %>%
+      sf::st_transform(epsg)
+  }
+  else {
+    zones <- cheminFichierContoursSHP %>%
+      sf::st_transform(epsg)
+  }
   
   # intersection des carreaux avec les zones puis calcul des agrégats
   agregatsZones <- carreauxSf %>%
@@ -118,6 +125,7 @@ calculAgregatsZones <- function(cheminFichierContoursSHP,
 
 
 filosofi_par_bdv17 <- calculAgregatsZones(cheminFichierContoursSHP="donnees/elections-2017-decoupage-des-bureaux-de-vote.shp", 
+                                 SHP=1,
                                  cheminFichierCSV="donnees/Filosofi2017_carreaux_200m_met.csv", 
                                  listeCodesCommune=c("31555"),
                                  listeIndic=listeIndicDef)
