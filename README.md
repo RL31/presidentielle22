@@ -49,7 +49,7 @@ L'électorat de Jadot est différent de celui de Mélenchon (voir par exemple l'
 
 ## A droite et à l'extrême droite, Macron et Zemmour fissurent l'électorat des Républicains 
 
-Sa politique menée depuis 5 ans, ses soutiens dans l'exercice du pouvoir et son programme annoncé permettent au président-candidat de rafler une partie des voix de la droite historique. Dans le même temps, l'émergence d'un second pôle à l'extrême droite affichant sans ambiguïté son néo-libéralisme économique (Godin, 2021) parvient à récupérer l'électorat le plus conservateur et nationaliste de cette même droite historique. L'électorat classique de la droite toulousaine se retrouve ainsi scindé entre les candidats Macron et Zemmour.
+Sa politique menée depuis 5 ans, ses soutiens dans l'exercice du pouvoir et son programme annoncé (Guillem, 2022) permettent au président-candidat de rafler une partie des voix de la droite historique. Dans le même temps, l'émergence d'un second pôle à l'extrême droite affichant sans ambiguïté son néo-libéralisme économique (Godin, 2021) parvient à récupérer l'électorat le plus conservateur et nationaliste de cette même droite historique. L'électorat classique de la droite toulousaine se retrouve ainsi scindé entre les candidats Macron et Zemmour.
 
 #### Macron avance sur sa jambe droite
 
@@ -69,7 +69,7 @@ La carte des scores de Zemmour n'a pas beaucoup de points communs avec celle de 
 
 ![image](https://user-images.githubusercontent.com/30465109/163382188-c2d4621e-c7ca-490e-8db2-d3db6776b127.png)
 
-Sociologiquement, les bureaux où Zemmour réussit le mieux sont d'ailleurs plus proches de ceux de Fillon 2017 : part élevée de cadres, d'artisan·e·s, commerçant·e·s et chef·fe·s d'entreprise et des ménages les plus riches. Les bureaux les plus favorables à Le Pen (plus de 10 %) sont au contraire composés de parts élevées d'ouvrier·ère·s, d'employé·e·s et de professions intermédiaires. En revanche, dans les quartiers qui comptent le plus d'ouvrier·ère·s et de chômeur·se·s, et donc souvent une part importante de Français·e·s né·e·s à l'étranger, la candidate qui souhaite instaurer une "préférence nationale" réalise certains de ses moins bons scores (Wadlow, 2022 ; Gombin, 2017).
+Sociologiquement, les bureaux où Zemmour réussit le mieux sont d'ailleurs plus proches de ceux de Fillon 2017 : part élevée de cadres, d'artisan·e·s, commerçant·e·s et chef·fe·s d'entreprise et des ménages les plus riches. Cette proximité électorale renvoit à la question de la définition, mouvante, de l'extrême droite (Houard-Vial, 2022). Les bureaux les plus favorables à Le Pen (plus de 10 %) sont au contraire composés de parts élevées d'ouvrier·ère·s, d'employé·e·s et de professions intermédiaires. En revanche, dans les quartiers qui comptent le plus d'ouvrier·ère·s et de chômeur·se·s, et donc souvent une part importante de Français·e·s né·e·s à l'étranger, la candidate qui souhaite instaurer une "préférence nationale" réalise certains de ses moins bons scores (Wadlow, 2022 ; Gombin, 2017).
 
 ![image](https://user-images.githubusercontent.com/30465109/163554906-7de939bb-b892-424f-aa07-dce1b2b72549.png)
 ![image](https://user-images.githubusercontent.com/30465109/163476368-eb5ce1b5-bdb3-4ee1-896c-687c4da278bd.png)
@@ -87,6 +87,10 @@ L'étude de la corrélation entre les votes Macron, Le Pen, Zemmour en 2022 et l
 [Christophe Batardy, Emmanuel Bellanger, Pierre Gilbert, Jean Rivière (2017) : "Présidentielle 2017. Les votes des grandes villes au microscope", Métropolitiques, 9 mai 2017](https://metropolitiques.eu/Presidentielle-2017-Les-votes-des-grandes-villes-au-microscope.html)
 
 [Joël Gombin (2017) : "Marseille, une ville coupée en quatre", Métropolitiques, 22 mai 2017](https://metropolitiques.eu/Marseille-une-ville-coupee-en.html)
+
+[François Guillem (2022): "Analyse des programmes de la présidentielle 2022 avec Word2vec", billet de blog](https://francoisguillem.fr/2022/04/analyse-des-programmes-de-la-presidentielle-2022-avec-word2vec/)
+
+[Emilien Houard-Vial (2022: "Nommer l'extrême droite : définition et identification d’une catégorie politique mouvante"](https://ehouardvial.wordpress.com/2022/04/22/nommer-lextreme-droite/)
 
 [Romaric Godin (2021): "Chez Éric Zemmour, un fascisme empreint de néolibéralisme", Médiapart](https://www.mediapart.fr/journal/culture-idees/041221/chez-eric-zemmour-un-fascisme-empreint-de-neoliberalisme)
 
