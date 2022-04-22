@@ -5,7 +5,9 @@
 <br>
 
 
-Voter à gauche aux scrutins présidentiels, mais à droite aux scrutins municipaux : tel est le soi-disant paradoxe toulousain. Après avoir réélu en 2020 un maire Les Républicains, les toulousain·e·s ont massivement voté pour Mélenchon lors du premier tour de la présidentielle 2022 (28 % des inscrit·e·s, contre 20 % pour le n°2, Macron ; 36 % et 26 % en voix exprimées). Cette vague rouge repose sur une plus forte mobilisation de l'électorat des quartiers populaires mais aussi sur une union des électeur·ice·s de gauche derrière le candidat le plus à même d'accéder au second tour. L'analyse des résultats du 1er tour montre également que les candidatures Macron et Zemmour créent une scission dans l'électorat traditionnel de la droite toulousaine. La candidate Les Républicains, soutenue par le maire, fait un score ridiculement faible (2 % des inscrit·e·s) laissant l'électorat Fillon de 2017 (17 % alors) se répartir entre la droite macroniste et l'extrême-droite.
+Voter à gauche aux scrutins présidentiels, mais à droite aux scrutins municipaux : tel est le soi-disant paradoxe toulousain (Fretel, 2002). Après avoir réélu en 2020 un maire Les Républicains, les toulousain·e·s ont massivement voté pour Mélenchon lors du premier tour de la présidentielle 2022 (28 % des inscrit·e·s, contre 20 % pour le n°2, Macron ; 36 % et 26 % en voix exprimées). Cette vague rouge repose sur une plus forte mobilisation de l'électorat des quartiers populaires mais aussi sur une union des électeur·ice·s de gauche derrière le candidat le plus à même d'accéder au second tour. L'analyse des résultats du 1er tour montre également que les candidatures Macron et Zemmour créent une scission dans l'électorat traditionnel de la droite toulousaine. La candidate Les Républicains, soutenue par le maire, fait un score ridiculement faible (2 % des inscrit·e·s) laissant l'électorat Fillon de 2017 (17 % alors) se répartir entre la droite macroniste et l'extrême-droite.
+
+*Cette analyse reprend la méthodologie du projet Cartelec (Beauguitte, Colange, 2013 ; Batardy et al. 2017).*
 
 ![image](https://user-images.githubusercontent.com/30465109/163381760-8c8569cd-6b0b-4812-8b6b-126273da112d.png)
 
@@ -40,14 +42,14 @@ En 2022, et contrairement à 2017, PS et EELV font cavaliers seuls. Leurs scores
 
 ![image](https://user-images.githubusercontent.com/30465109/163555616-fd403845-c86d-4b2a-9de5-5c82413e7baf.png)
 
-L'électorat de Jadot est différent de celui de Mélenchon. Le candidat EELV enregistre ses meilleurs scores dans les bureaux à niveaux de vie moyens à aisés (de 20 000 euros à 30 000 euros), qui comptent très peu de chômeur·se·s ou d'ouvrier·ère·s. En revanche, les parts de cadres mais aussi de professions intermédiaires sont élevées (sans être maximales) dans les bureaux où il récolte plus de 5 % des inscrit·e·s.
+L'électorat de Jadot est différent de celui de Mélenchon (voir par exemple l'analyse du vote Hamon à Marseille en 2017 (Gombin, 2017)). Le candidat EELV enregistre ses meilleurs scores dans les bureaux à niveaux de vie moyens à aisés (de 20 000 euros à 30 000 euros), qui comptent très peu de chômeur·se·s ou d'ouvrier·ère·s. En revanche, les parts de cadres mais aussi de professions intermédiaires sont élevées (sans être maximales) dans les bureaux où il récolte plus de 5 % des inscrit·e·s.
 
 ![image](https://user-images.githubusercontent.com/30465109/163382372-9564519d-117c-48c6-bb36-19922a535f9e.png)
 
 
 ## A droite et à l'extrême droite, Macron et Zemmour fissurent l'électorat des Républicains 
 
-Sa politique menée depuis 5 ans, ses soutiens dans l'exercice du pouvoir et son programme annoncé permettent au président-candidat de rafler une partie des voix de la droite historique. Dans le même temps, l'émergence d'un second pôle à l'extrême droite affichant sans ambiguïté son néo-libéralisme économique parvient à récupérer l'électorat le plus conservateur et nationaliste de cette même droite historique. L'électorat classique de la droite toulousaine se retrouve ainsi scindé entre les candidats Macron et Zemmour.
+Sa politique menée depuis 5 ans, ses soutiens dans l'exercice du pouvoir et son programme annoncé permettent au président-candidat de rafler une partie des voix de la droite historique. Dans le même temps, l'émergence d'un second pôle à l'extrême droite affichant sans ambiguïté son néo-libéralisme économique (Godin, 2021) parvient à récupérer l'électorat le plus conservateur et nationaliste de cette même droite historique. L'électorat classique de la droite toulousaine se retrouve ainsi scindé entre les candidats Macron et Zemmour.
 
 #### Macron avance sur sa jambe droite
 
@@ -67,7 +69,7 @@ La carte des scores de Zemmour n'a pas beaucoup de points communs avec celle de 
 
 ![image](https://user-images.githubusercontent.com/30465109/163382188-c2d4621e-c7ca-490e-8db2-d3db6776b127.png)
 
-Sociologiquement, les bureaux où Zemmour réussit le mieux sont d'ailleurs plus proches de ceux de Fillon 2017 : part élevée de cadres, d'artisan·e·s, commerçant·e·s et chef·fe·s d'entreprise et des ménages les plus riches. Les bureaux les plus favorables à Le Pen (plus de 10 %) sont au contraire composés de parts élevées d'ouvrier·ère·s, d'employé·e·s et de professions intermédiaires. En revanche, dans les quartiers qui comptent le plus d'ouvrier·ère·s et de chômeur·se·s, et donc souvent une part importante de Français·e·s né·e·s à l'étranger, la candidate qui souhaite instaurer une "préférence nationale" réalise certains de ses moins bons scores.
+Sociologiquement, les bureaux où Zemmour réussit le mieux sont d'ailleurs plus proches de ceux de Fillon 2017 : part élevée de cadres, d'artisan·e·s, commerçant·e·s et chef·fe·s d'entreprise et des ménages les plus riches. Les bureaux les plus favorables à Le Pen (plus de 10 %) sont au contraire composés de parts élevées d'ouvrier·ère·s, d'employé·e·s et de professions intermédiaires. En revanche, dans les quartiers qui comptent le plus d'ouvrier·ère·s et de chômeur·se·s, et donc souvent une part importante de Français·e·s né·e·s à l'étranger, la candidate qui souhaite instaurer une "préférence nationale" réalise certains de ses moins bons scores (Wadlow, 2022 ; Gombin, 2017).
 
 ![image](https://user-images.githubusercontent.com/30465109/163554906-7de939bb-b892-424f-aa07-dce1b2b72549.png)
 ![image](https://user-images.githubusercontent.com/30465109/163476368-eb5ce1b5-bdb3-4ee1-896c-687c4da278bd.png)
@@ -76,3 +78,16 @@ L'étude de la corrélation entre les votes Macron, Le Pen, Zemmour en 2022 et l
 
 ![image](https://user-images.githubusercontent.com/30465109/163555067-87e5d5ad-cc5d-4807-a4ba-e973bae650be.png)
 
+# Bibliographie
+
+[Julien Fretel (2002): "Toulouse, la pérennité de l'héritage centriste", in Le vote des villes, chapitre 18](https://www.cairn.info/le-vote-des-villes-les-elections-municipales--9782724608786-page-307.htm)
+
+[Laurent Beauguitte, Céline Colange (2013): "Analyser les comportements électoraux à l’échelle du bureau de vote", ANR Cartelec, mémoire scientifique](https://halshs.archives-ouvertes.fr/halshs-00839899)
+
+[Christophe Batardy, Emmanuel Bellanger, Pierre Gilbert, Jean Rivière (2017) : "Présidentielle 2017. Les votes des grandes villes au microscope", Métropolitiques, 9 mai 2017](https://metropolitiques.eu/Presidentielle-2017-Les-votes-des-grandes-villes-au-microscope.html)
+
+[Joël Gombin (2017) : "Marseille, une ville coupée en quatre", Métropolitiques, 22 mai 2017](https://metropolitiques.eu/Marseille-une-ville-coupee-en.html)
+
+[Romaric Godin (2021): "Chez Éric Zemmour, un fascisme empreint de néolibéralisme", Médiapart](https://www.mediapart.fr/journal/culture-idees/041221/chez-eric-zemmour-un-fascisme-empreint-de-neoliberalisme)
+
+[Pierre Wadlow (2022) : "Les votes en milieux populaires : diversité électorale et hétérogénéité sociale", Métropolitiques, 18 avril 2022](https://metropolitiques.eu/Les-votes-en-milieux-populaires-diversite-electorale-et-heterogeneite-sociale.html)
