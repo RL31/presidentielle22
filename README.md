@@ -90,7 +90,7 @@ L'étude de la corrélation entre les votes Macron, Le Pen, Zemmour en 2022 et l
 
 [François Guillem (2022): "Analyse des programmes de la présidentielle 2022 avec Word2vec", billet de blog](https://francoisguillem.fr/2022/04/analyse-des-programmes-de-la-presidentielle-2022-avec-word2vec/)
 
-[Emilien Houard-Vial (2022: "Nommer l'extrême droite : définition et identification d’une catégorie politique mouvante"](https://ehouardvial.wordpress.com/2022/04/22/nommer-lextreme-droite/)
+[Emilien Houard-Vial (2022: "Nommer l'extrême droite : définition et identification d’une catégorie politique mouvante", billet de blog](https://ehouardvial.wordpress.com/2022/04/22/nommer-lextreme-droite/)
 
 [Romaric Godin (2021): "Chez Éric Zemmour, un fascisme empreint de néolibéralisme", Médiapart](https://www.mediapart.fr/journal/culture-idees/041221/chez-eric-zemmour-un-fascisme-empreint-de-neoliberalisme)
 
