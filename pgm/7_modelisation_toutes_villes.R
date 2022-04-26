@@ -337,7 +337,7 @@ modelisation %>%
   guides(shape="none")
 
 
-
+# pour les effets ville
 modelisation %>% 
   filter(str_detect(variable,"Libellé") & variable != "(Intercept)") %>% 
   ggplot()+
@@ -368,6 +368,8 @@ modelisation %>%
         plot.caption = element_text(size=8))+
   guides(shape="none")
 
+
+# Pour la comparaison avec effets villes bruts
 modele_JLM2 <- lm(formula = melenchon/Inscrits*100 ~ relevel(as.factor(Libellé.de.la.commune),ref="Colmar"),
                  #+  mprop tx_artcom + tx_chom + mpauv + tx_dsup + tx_cad + ndv+ ind65p
                  data = donnes_reg_toutes_villes)
@@ -440,130 +442,3 @@ modelisation2 %>%
         legend.position = "top",
         plot.caption = element_text(size=8))+
   guides(shape="none")
-
-
-
-#install.packages("jtools")
-# install.packages("ggstance")
-# https://cran.r-project.org/web/packages/jtools/vignettes/summ.html#plot_summs_and_plot_coefs
-jtools::plot_coefs(modele_JLM, modele_MLP,modele_EM,model.names = c("Mélenchon", "Le Pen", "Macron"), scale = TRUE)
-jtools::plot_coefs(modele_JLM,model.names = c("Mélenchon"), scale = TRUE)
-
-coefficients <- as.data.frame(modele_EM$coefficients) %>% mutate(variable=row.names(.) ) %>% 
-  bind_cols(as.data.frame(modele_JLM$coefficients)) %>% 
-  bind_cols(as.data.frame(modele_MLP$coefficients))
-
-
-summary(modele_EM)
-
-
-
-
-# Pas à pas
-modelisation2 <- 
-  summary(lm(formula = melenchon/Inscrits*100 ~ relevel(as.factor(Libellé.de.la.commune),ref="Bordeaux"),
-             #+  mprop tx_artcom + tx_chom + mpauv + tx_dsup + tx_cad + ndv+ ind65p
-             data = donnes_reg_toutes_villes))$coefficients %>% as.data.frame() %>%  mutate(candidat="Sans",
-                                                                                 variable=row.names(.) ) %>% 
-  bind_rows(summary(lm(formula = melenchon/Inscrits*100 ~ tx_ouv +  tx_retr +   ndv+ tx_cdd+ tx_nsal+
-                         ind1824+ind2539 +  tx_immig + relevel(as.factor(Libellé.de.la.commune),ref="Bordeaux"),
-                       #+  mprop tx_artcom + tx_chom + mpauv + tx_dsup + tx_cad + ndv+ ind65p
-                       data = donnes_reg_toutes_villes))$coefficients %>% as.data.frame() %>% mutate(candidat="Avec",
-                                                                           variable=row.names(.))) %>% 
-  mutate(significativite=`Pr(>|t|)`<0.001,
-         variable2=str_remove_all(variable,"relevel\\(as.factor\\(Libellé.de.la.commune\\), ref ="),
-         variable2=str_remove_all(variable2,"\"Bordeaux\"\\)")) %>%
-  filter(!str_detect(variable,"Gouesnou"))
-
-
-
-modelisation2 %>% 
-  filter(str_detect(variable,"Libellé") & variable != "(Intercept)") %>% 
-  ggplot()+
-  geom_point(aes(x = variable2,y=Estimate,color=candidat,shape=significativite),size=6,alpha=.8)+
-  geom_hline(yintercept = 0)+
-  scale_color_manual(name="",values = c("Avec"="red2", "Sans"="coral"))+
-  scale_shape_manual(name="", values = c("TRUE"=15,"FALSE"=13),
-                     labels=c("TRUE"="Significativement différent de 0","FALSE"="Non significativement différent de 0"))+
-  labs(title="Modélisation du vote urbain au 1er tour de l'élection présidentielle 2022 (2/2) : effets ville",
-       subtitle = "à l'échelle du bureau de vote, en % des inscrit-e-s, référence = Bordeaux",
-       y="Coefficient estimé",
-       caption = "Source : Open data des villes étudiées, Découpage des bureaux de vote,\nMinistère de l'Intérieur, Résultats du 1er tour de l'élection présidentielle 2022\nInsee, Recensement 2018, Filosofi 2017\nTraitements et erreurs : @Re_Mi_La")+
-  coord_flip()+
-  theme_minimal()+
-  theme(text=element_text(size = 14),
-        plot.subtitle = element_text(face="italic",size=10),
-        plot.title.position = "plot",
-        legend.position = "top",
-        plot.caption = element_text(size=8))+
-  guides(shape="none")
-
-donnes_reg_toutes_villes %>%
-  filter(Libellé.de.la.commune=="Roubaix") %>%
-  summarise(tx_pec=sum(pecresse)/sum(Inscrits)*100,
-            tx_zem=sum(zemmour)/sum(Inscrits)*100,
-            tx_mel=sum(melenchon)/sum(Inscrits)*100,
-            tx_jad=sum(jadot)/sum(Inscrits)*100)
-
-summary(modele_JLM2)
-
-library(lme4)
-install.packages("sjPlot")
-library(lmerTest)
-#> 
-#> Attaching package: 'lmerTest'
-#> The following object is masked from 'package:lme4':
-#> 
-#>     lmer
-#> The following object is masked from 'package:stats':
-#> 
-#>     step
-library(sjplot)
-library(sjmisc)
-library(multilevelTools)
-xyplot(incidence/size ~ period|herd, cbpp, type=c('g','p','l'),
-       layout=c(3,5), index.cond = function(x,y)max(y))
-
-m1 <- lmer( mel~ (1+ ndv|Libellé.de.la.commune),
-              data = donnes_reg_toutes_villes %>% mutate(mel=melenchon/Inscrits*100))
-
-fit <- lmer(weight ~ Time * Diet + (1 + Time | Chick), data=ChickWeight, REML=T)
-sjmisc::sjp.lmer(fit, y.offset = .4)
-
-
-summary(gm1)
-md <- modelDiagnostics(gm1, ev.perc = .001)
-
-plot(md, ask = FALSE, ncol = 2, nrow = 3)
-
-## linear mixed models - reference values from older code
-(fm1 <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy))
-summary(fm1)# (with its own print method; see class?merMod % ./merMod-class.Rd
-str(terms(fm1))
-stopifnot(identical(terms(fm1, fixed.only=FALSE),
-                    terms(model.frame(fm1))))
-attr(terms(fm1, FALSE), "dataClasses") # fixed.only=FALSE needed for dataCl.
-## Maximum Likelihood (ML), and "monitor" iterations via 'verbose':
-fm1_ML <- update(fm1, REML=FALSE, verbose = 1)
-(fm2 <- lmer(Reaction ~ Days + (Days || Subject), sleepstudy))
-anova(fm1, fm2)
-sm2 <- summary(fm2)
-print(fm2, digits=7, ranef.comp="Var") # the print.merMod() method
-54 lmerControl
-print(sm2, digits=3, corr=FALSE) # the print.summary.merMod() method
-(vv <- vcov.merMod(fm2, corr=TRUE))
-as(vv, "corMatrix")# extracts the ("hidden") 'correlation' entry in @factors
-## Fit sex-specific variances by constructing numeric dummy variables
-## for sex and sex:age; in this case the estimated variance differences
-## between groups in both intercept and slope are zero ...
-data(Orthodont,package="nlme")
-Orthodont$nsex <- as.numeric(Orthodont$Sex=="Male")
-Orthodont$nsexage <- with(Orthodont, nsex*age)
-lmer(distance ~ age + (age|Subject) + (0+nsex|Subject) +
-       (0 + nsexage|Subject), data=Orthodont)
-
-
-modele_VP <- lm(formula = pecresse/Inscrits*100 ~ tx_ouv +  tx_retr +   ndv+ tx_cdd+ tx_nsal+ tx_chom+ tx_cad+
-                  mprop +ind1824+ind2539 +  tx_immig +  relevel(as.factor(Libellé.de.la.commune),ref="Colmar"),
-                #+  mprop tx_artcom + tx_chom + mpauv + tx_dsup + tx_cad + ndv+ ind65p
-                data = donnes_reg_toutes_villes)
